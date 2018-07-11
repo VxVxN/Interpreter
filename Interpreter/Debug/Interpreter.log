@@ -1,0 +1,8 @@
+﻿  LexicalAnalyzer.cpp
+  MyForm.cpp
+  syntaxAnalyzer.cpp
+  Token.cpp
+  Создание кода...
+  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
+  LexicalAnalyzer.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  Interpreter.vcxproj -> C:\Users\Владимир\Desktop\Интерпретатор\Debug\Interpreter.exe
