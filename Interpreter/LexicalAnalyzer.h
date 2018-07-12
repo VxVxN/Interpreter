@@ -1,6 +1,6 @@
 #pragma once
 
-ref class LexicalAnalyzer
+class LexicalAnalyzer
 {
 public:
 	LexicalAnalyzer();
