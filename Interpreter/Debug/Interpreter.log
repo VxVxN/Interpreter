@@ -1,6 +1,3 @@
-﻿  LexicalAnalyzer.cpp
-  MyForm.cpp
-  syntaxAnalyzer.cpp
-  Token.cpp
-c:\users\владимир\desktop\interpreter\interpreter\token.h(13): error C4368: не удается определить "text" как член управляемого "Token": смешанные типы не поддерживаются
-  Создание кода...
+﻿  MyForm.cpp
+  LexicalAnalyzer.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+  Interpreter.vcxproj -> C:\Users\Владимир\Desktop\Interpreter\Debug\Interpreter.exe

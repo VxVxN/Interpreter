@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
+#include <list>
+
 #include "LexicalAnalyzer.h"
+#include "Token.h"
 
 namespace Interpreter {
 
@@ -151,7 +154,7 @@ namespace Interpreter {
 			this->textBoxProg->ScrollBars = System::Windows::Forms::ScrollBars::Both;
 			this->textBoxProg->Size = System::Drawing::Size(462, 142);
 			this->textBoxProg->TabIndex = 5;
-			this->textBoxProg->Text = L"fun Sum(a,b)\r\n{\r\nreturn a + b;\r\n}\r\nprint(sum(5,3));";
+			this->textBoxProg->Text = L"2+3";
 			// 
 			// MyForm
 			// 
@@ -182,8 +185,18 @@ namespace Interpreter {
 			return std::string(ptr);
 		}
 
-	private: System::Void âûïîëíèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		String ^ StlToSystem(std::string &s)
+		{
+			return gcnew System::String(s.c_str());
+		}
 
+	private: System::Void âûïîëíèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		std::string input = SystemToStl(textBoxProg->Text);
+		LexicalAnalyzer lexicalAnalyzer(input);
+		std::list<Token> tokenList = lexicalAnalyzer.tokenize();
+		for (Token token : tokenList) {
+			textBoxConsol->AppendText(StlToSystem(token.getText()));
+		}
 	}
 };
 }
