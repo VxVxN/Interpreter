@@ -1,9 +1,14 @@
 #pragma once
 #include <string>
 #include <list>
+#include <cstdlib>
 
 #include "LexicalAnalyzer.h"
 #include "Token.h"
+#include "Expression.h"
+#include "NumberExpression.h"
+#include "BinaryExpression.h"
+#include "Parser.h"
 
 namespace Interpreter {
 
@@ -191,11 +196,21 @@ namespace Interpreter {
 		}
 
 	private: System::Void âûïîëíèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		textBoxConsol->Text = "";
 		std::string input = SystemToStl(textBoxProg->Text);
 		LexicalAnalyzer lexicalAnalyzer(input);
 		std::list<Token> tokenList = lexicalAnalyzer.tokenize();
 		for (Token token : tokenList) {
 			textBoxConsol->AppendText(StlToSystem(token.getText()));
+		}
+		std::string str = " = ";
+		textBoxConsol->AppendText(StlToSystem(str));
+		Parser *parser = new Parser(tokenList);
+		std::list<std::unique_ptr<Expression>> epressionList(parser->parse());
+
+		for (std::unique_ptr<Expression> &expr : epressionList) {
+			std::string str = std::to_string(expr->eval());
+			textBoxConsol->AppendText(StlToSystem(str));
 		}
 	}
 };

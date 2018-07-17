@@ -1,3 +1,12 @@
-﻿  MyForm.cpp
-  LexicalAnalyzer.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
+﻿  BinaryExpression.cpp
+  Expression.cpp
+  MyForm.cpp
+  NumberExpression.cpp
+  Parser.cpp
+  UnaryExpression.cpp
+  Создание кода...
+c:\users\владимир\desktop\interpreter\interpreter\unaryexpression.cpp(17): warning C4715: UnaryExpression::eval: значение возвращается не при всех путях выполнения
+c:\users\владимир\desktop\interpreter\interpreter\parser.cpp(98): warning C4715: Parser::primary: значение возвращается не при всех путях выполнения
+c:\users\владимир\desktop\interpreter\interpreter\binaryexpression.cpp(23): warning C4715: BinaryExpression::eval: значение возвращается не при всех путях выполнения
+  BinaryExpression.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   Interpreter.vcxproj -> C:\Users\Владимир\Desktop\Interpreter\Debug\Interpreter.exe

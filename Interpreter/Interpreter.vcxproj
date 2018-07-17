@@ -136,18 +136,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryExpression.cpp" />
+    <ClCompile Include="Expression.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="NumberExpression.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="syntaxAnalyzer.cpp" />
     <ClCompile Include="Token.cpp" />
+    <ClCompile Include="UnaryExpression.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryExpression.h" />
+    <ClInclude Include="Expression.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="NumberExpression.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="syntaxAnalyzer.h" />
     <ClInclude Include="Token.h" />
+    <ClInclude Include="UnaryExpression.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
