@@ -190,27 +190,42 @@ namespace Interpreter {
 			return std::string(ptr);
 		}
 
-		String ^ StlToSystem(std::string &s)
+		String ^ StrToSystem(std::string &s)
 		{
 			return gcnew System::String(s.c_str());
 		}
 
+		String ^ StrToSystem(const char *s)
+		{
+			return gcnew System::String(s);
+		}
+
 	private: System::Void âûïîëíèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		textBoxConsol->Text = "";
+		textBoxError->Text = "";
 		std::string input = SystemToStl(textBoxProg->Text);
 		LexicalAnalyzer lexicalAnalyzer(input);
-		std::list<Token> tokenList = lexicalAnalyzer.tokenize();
-		for (Token token : tokenList) {
-			textBoxConsol->AppendText(StlToSystem(token.getText()));
-		}
-		std::string str = " = ";
-		textBoxConsol->AppendText(StlToSystem(str));
-		Parser *parser = new Parser(tokenList);
-		std::list<std::unique_ptr<Expression>> epressionList(parser->parse());
+		try
+		{
+			std::list<Token> tokenList = lexicalAnalyzer.tokenize();
 
-		for (std::unique_ptr<Expression> &expr : epressionList) {
-			std::string str = std::to_string(expr->eval());
-			textBoxConsol->AppendText(StlToSystem(str));
+			for (Token token : tokenList) {
+				textBoxConsol->AppendText(StrToSystem(token.getText()));
+			}
+
+			std::string str = " = ";
+			textBoxConsol->AppendText(StrToSystem(str));
+			Parser *parser = new Parser(tokenList);
+			std::list<std::unique_ptr<Expression>> epressionList(parser->parse());
+
+			for (std::unique_ptr<Expression> &expr : epressionList) {
+				std::string str = std::to_string(expr->eval());
+				textBoxConsol->AppendText(StrToSystem(str));
+			}
+		}
+		catch (const char *ex)
+		{
+			textBoxError->AppendText(StrToSystem(ex));
 		}
 	}
 };

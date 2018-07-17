@@ -100,4 +100,5 @@ std::unique_ptr<Expression> Parser::primary()
 		match(TokenType::R_PARENTHESIS);
 		return std::move(result);
 	}
+	throw "Parser: Unknown expression";
 }

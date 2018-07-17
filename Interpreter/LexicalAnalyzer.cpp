@@ -55,7 +55,14 @@ void LexicalAnalyzer::tokenizeNumber()
 {
 	std::string buffer;
 	char current = peek(0);
-	while (isdigit(current)) {
+	while (true) {
+		if (current == '.') {
+			std::size_t found = buffer.find_first_of(".");
+			if (found != std::string::npos) throw "LexicalAnalyzer: Invalid float number";
+		}
+		else if (!isdigit(current)) {
+			break;
+		}
 		buffer.append(&current);
 		current = next();
 	}
