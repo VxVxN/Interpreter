@@ -2,7 +2,7 @@
 
 #include <String>
 
-enum class TokenType { NUMBER, PLUS, MINUS, STAR, SLASH, END_OF_FILE };
+enum class TokenType { NUMBER, PLUS, MINUS, STAR, SLASH, L_PARENTHESIS, R_PARENTHESIS, END_OF_FILE };
 
 class Token
 {

@@ -95,4 +95,9 @@ std::unique_ptr<Expression> Parser::primary()
 		std::unique_ptr<Expression> result(new NumberExpression(atof(current.getText().c_str())));
 		return std::move(result);
 	}
+	if (match(TokenType::L_PARENTHESIS)) {
+		std::unique_ptr<Expression> result(expression().release());
+		match(TokenType::R_PARENTHESIS);
+		return std::move(result);
+	}
 }
