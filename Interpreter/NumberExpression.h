@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Expression.h"
+#include "IExpression.h"
 
-class NumberExpression : public Expression
+class NumberExpression : public IExpression
 {
 public:
 	NumberExpression(double value);

@@ -1,10 +1,10 @@
 #include "UnaryExpression.h"
 
 
-UnaryExpression::UnaryExpression(char operation, Expression &expr)
+UnaryExpression::UnaryExpression(char operation, IExpression &expr)
 {
 	_operation = operation;
-	_expr = std::move((std::unique_ptr<Expression>)&expr);
+	_expr = std::move((std::unique_ptr<IExpression>)&expr);
 }
 
 double UnaryExpression::eval()

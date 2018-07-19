@@ -5,7 +5,7 @@
 
 #include "LexicalAnalyzer.h"
 #include "Token.h"
-#include "Expression.h"
+#include "IExpression.h"
 #include "NumberExpression.h"
 #include "BinaryExpression.h"
 #include "Parser.h"
@@ -94,7 +94,7 @@ namespace Interpreter {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(462, 24);
+			this->menuStrip1->Size = System::Drawing::Size(682, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -116,20 +116,20 @@ namespace Interpreter {
 			this->textBoxError->Dock = System::Windows::Forms::DockStyle::Bottom;
 			this->textBoxError->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->textBoxError->Location = System::Drawing::Point(0, 257);
+			this->textBoxError->Location = System::Drawing::Point(0, 456);
 			this->textBoxError->Multiline = true;
 			this->textBoxError->Name = L"textBoxError";
 			this->textBoxError->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->textBoxError->Size = System::Drawing::Size(462, 67);
+			this->textBoxError->Size = System::Drawing::Size(682, 67);
 			this->textBoxError->TabIndex = 1;
 			// 
 			// splitter1
 			// 
 			this->splitter1->Cursor = System::Windows::Forms::Cursors::HSplit;
 			this->splitter1->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->splitter1->Location = System::Drawing::Point(0, 247);
+			this->splitter1->Location = System::Drawing::Point(0, 446);
 			this->splitter1->Name = L"splitter1";
-			this->splitter1->Size = System::Drawing::Size(462, 10);
+			this->splitter1->Size = System::Drawing::Size(682, 10);
 			this->splitter1->TabIndex = 2;
 			this->splitter1->TabStop = false;
 			// 
@@ -138,20 +138,20 @@ namespace Interpreter {
 			this->textBoxConsol->Dock = System::Windows::Forms::DockStyle::Bottom;
 			this->textBoxConsol->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->textBoxConsol->Location = System::Drawing::Point(0, 176);
+			this->textBoxConsol->Location = System::Drawing::Point(0, 253);
 			this->textBoxConsol->Multiline = true;
 			this->textBoxConsol->Name = L"textBoxConsol";
 			this->textBoxConsol->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->textBoxConsol->Size = System::Drawing::Size(462, 71);
+			this->textBoxConsol->Size = System::Drawing::Size(682, 193);
 			this->textBoxConsol->TabIndex = 3;
 			// 
 			// splitter2
 			// 
 			this->splitter2->Cursor = System::Windows::Forms::Cursors::HSplit;
 			this->splitter2->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->splitter2->Location = System::Drawing::Point(0, 166);
+			this->splitter2->Location = System::Drawing::Point(0, 243);
 			this->splitter2->Name = L"splitter2";
-			this->splitter2->Size = System::Drawing::Size(462, 10);
+			this->splitter2->Size = System::Drawing::Size(682, 10);
 			this->splitter2->TabIndex = 4;
 			this->splitter2->TabStop = false;
 			// 
@@ -164,15 +164,15 @@ namespace Interpreter {
 			this->textBoxProg->Multiline = true;
 			this->textBoxProg->Name = L"textBoxProg";
 			this->textBoxProg->ScrollBars = System::Windows::Forms::ScrollBars::Both;
-			this->textBoxProg->Size = System::Drawing::Size(462, 142);
+			this->textBoxProg->Size = System::Drawing::Size(682, 219);
 			this->textBoxProg->TabIndex = 5;
-			this->textBoxProg->Text = L"word=2+3\r\nword2=PI+word";
+			this->textBoxProg->Text = L"word=2+3\r\nword2=PI+word\r\nprint word\r\nprint word2";
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(462, 324);
+			this->ClientSize = System::Drawing::Size(682, 523);
 			this->Controls->Add(this->textBoxProg);
 			this->Controls->Add(this->splitter2);
 			this->Controls->Add(this->textBoxConsol);
@@ -216,20 +216,18 @@ namespace Interpreter {
 		{
 			std::list<Token> tokenList = lexicalAnalyzer.tokenize();
 
-			for (Token token : tokenList) {
-				textBoxConsol->AppendText(StrToSystem(token.getText()));
-			}
+			//for (Token token : tokenList) {
+			//	textBoxConsol->AppendText(StrToSystem(token.getText()));
+			//}
+			//textBoxConsol->AppendText(StrToSystem("\n"));
 
-			textBoxConsol->AppendText(StrToSystem("\n"));
 			Parser *parser = new Parser(tokenList);
-			std::list<std::unique_ptr<Statement>> statements(parser->parse());
+			std::list<std::unique_ptr<IStatement>> statements(parser->parse());
 
-			for (std::unique_ptr<Statement> &statement : statements) {
-				statement->execute();
+			for (std::unique_ptr<IStatement> &statement : statements) {
+				if (statement->execute() != "")
+					textBoxConsol->AppendText(StrToSystem(statement->execute() + "\n"));
 			}
-			textBoxConsol->AppendText("word = " + StrToSystem(std::to_string(Variables::get("word"))));
-			textBoxConsol->AppendText(StrToSystem("\n"));
-			textBoxConsol->AppendText("word2 = " + StrToSystem(std::to_string(Variables::get("word2"))));
 		}
 		catch (const char *ex)
 		{

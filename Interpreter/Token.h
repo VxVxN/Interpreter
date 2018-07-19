@@ -6,6 +6,8 @@ enum class TokenType {
 	NUMBER, PLUS, MINUS, STAR, SLASH, EQUAL,
 	L_PARENTHESIS, R_PARENTHESIS, 
 	WORD,
+	//keyword
+	PRINT,
 	END_OF_FILE 
 };
 

@@ -1,18 +1,17 @@
 #pragma once
 
-#include "Statement.h"
-#include "Expression.h"
+#include "IStatement.h"
 #include "Variables.h"
 
-class AssignmentStatement : public Statement
+class AssignmentStatement : public IStatement
 {
 public:
-	AssignmentStatement(std::string variable, Expression &expression);
+	AssignmentStatement(std::string variable, IExpression &expression);
 
-	virtual void execute() override final;
+	virtual std::string execute() override final;
 
 private:
 	std::string _variable;
-	std::unique_ptr<Expression> _expression;
+	std::unique_ptr<IExpression> _expression;
 };
 

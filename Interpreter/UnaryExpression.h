@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Expression.h"
+#include "IExpression.h"
 
-class UnaryExpression : public Expression
+class UnaryExpression : public IExpression
 {
 public:
-	UnaryExpression(char operation, Expression &expr);
+	UnaryExpression(char operation, IExpression &expr);
 
 	double eval() override final;
 
 private:
-	std::unique_ptr<Expression> _expr;
+	std::unique_ptr<IExpression> _expr;
 	char _operation;
 };
 

@@ -63,6 +63,9 @@
     <ClCompile Include="AssignmentStatement.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
+    <ClCompile Include="PrintStatement.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -76,9 +79,6 @@
     </ClInclude>
     <ClInclude Include="Parser.h">
       <Filter>Header Files\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="Expression.h">
-      <Filter>Header Files\ast</Filter>
     </ClInclude>
     <ClInclude Include="NumberExpression.h">
       <Filter>Header Files\ast</Filter>
@@ -95,10 +95,16 @@
     <ClInclude Include="Variables.h">
       <Filter>Header Files\lib</Filter>
     </ClInclude>
-    <ClInclude Include="Statement.h">
+    <ClInclude Include="AssignmentStatement.h">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="AssignmentStatement.h">
+    <ClInclude Include="PrintStatement.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="IStatement.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="IExpression.h">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
   </ItemGroup>

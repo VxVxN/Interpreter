@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Expression.h"
+#include "IExpression.h"
 
-class BinaryExpression : public Expression
+class BinaryExpression : public IExpression
 {
 public:
-	BinaryExpression(char operation, Expression &expr1, Expression &expr2);
+	BinaryExpression(char operation, IExpression &expr1, IExpression &expr2);
 
 	double eval() override final;
 
 private:
-	std::unique_ptr<Expression> _expr1, _expr2;
+	std::unique_ptr<IExpression> _expr1, _expr2;
 	char _operation;
 };
 

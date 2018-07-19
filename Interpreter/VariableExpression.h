@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Expression.h"
+#include "IExpression.h"
 #include "Variables.h"
 
-class VariableExpression : public Expression
+class VariableExpression : public IExpression
 {
 public:
 	VariableExpression(std::string name);

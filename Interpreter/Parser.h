@@ -5,20 +5,21 @@
 #include <memory>
 
 #include "Token.h"
-#include "Expression.h"
+#include "IExpression.h"
 #include "NumberExpression.h"
 #include "BinaryExpression.h"
 #include "UnaryExpression.h"
 #include "VariableExpression.h"
-#include "Statement.h"
+#include "IStatement.h"
 #include "AssignmentStatement.h"
+#include "PrintStatement.h"
 
 class Parser
 {
 public:
 	Parser(std::list<Token> tokenList);
 
-	std::list<std::unique_ptr<Statement>> parse();
+	std::list<std::unique_ptr<IStatement>> parse();
 
 private:
 	int _pos;
@@ -30,13 +31,13 @@ private:
 	bool match(const TokenType &type);
 	//Token consume(TokenType type);
 
-	std::unique_ptr<Statement> statement();
-	std::unique_ptr<Statement> assignmentStatement();
+	std::unique_ptr<IStatement> statement();
+	std::unique_ptr<IStatement> assignmentStatement();
 
-	std::unique_ptr<Expression> expression();
-	std::unique_ptr<Expression> additive();
-	std::unique_ptr<Expression> multiplicative();
-	std::unique_ptr<Expression> unary();
-	std::unique_ptr<Expression> primary();
+	std::unique_ptr<IExpression> expression();
+	std::unique_ptr<IExpression> additive();
+	std::unique_ptr<IExpression> multiplicative();
+	std::unique_ptr<IExpression> unary();
+	std::unique_ptr<IExpression> primary();
 };
 
