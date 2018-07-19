@@ -9,6 +9,7 @@
 #include "NumberExpression.h"
 #include "BinaryExpression.h"
 #include "Parser.h"
+#include "AssignmentStatement.h"
 
 namespace Interpreter {
 
@@ -113,6 +114,8 @@ namespace Interpreter {
 			// textBoxError
 			// 
 			this->textBoxError->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->textBoxError->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->textBoxError->Location = System::Drawing::Point(0, 257);
 			this->textBoxError->Multiline = true;
 			this->textBoxError->Name = L"textBoxError";
@@ -133,6 +136,8 @@ namespace Interpreter {
 			// textBoxConsol
 			// 
 			this->textBoxConsol->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->textBoxConsol->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->textBoxConsol->Location = System::Drawing::Point(0, 176);
 			this->textBoxConsol->Multiline = true;
 			this->textBoxConsol->Name = L"textBoxConsol";
@@ -153,13 +158,15 @@ namespace Interpreter {
 			// textBoxProg
 			// 
 			this->textBoxProg->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->textBoxProg->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->textBoxProg->Location = System::Drawing::Point(0, 24);
 			this->textBoxProg->Multiline = true;
 			this->textBoxProg->Name = L"textBoxProg";
 			this->textBoxProg->ScrollBars = System::Windows::Forms::ScrollBars::Both;
 			this->textBoxProg->Size = System::Drawing::Size(462, 142);
 			this->textBoxProg->TabIndex = 5;
-			this->textBoxProg->Text = L"2+3";
+			this->textBoxProg->Text = L"word=2+3\r\nword2=PI+word";
 			// 
 			// MyForm
 			// 
@@ -213,15 +220,16 @@ namespace Interpreter {
 				textBoxConsol->AppendText(StrToSystem(token.getText()));
 			}
 
-			std::string str = " = ";
-			textBoxConsol->AppendText(StrToSystem(str));
+			textBoxConsol->AppendText(StrToSystem("\n"));
 			Parser *parser = new Parser(tokenList);
-			std::list<std::unique_ptr<Expression>> epressionList(parser->parse());
+			std::list<std::unique_ptr<Statement>> statements(parser->parse());
 
-			for (std::unique_ptr<Expression> &expr : epressionList) {
-				std::string str = std::to_string(expr->eval());
-				textBoxConsol->AppendText(StrToSystem(str));
+			for (std::unique_ptr<Statement> &statement : statements) {
+				statement->execute();
 			}
+			textBoxConsol->AppendText("word = " + StrToSystem(std::to_string(Variables::get("word"))));
+			textBoxConsol->AppendText(StrToSystem("\n"));
+			textBoxConsol->AppendText("word2 = " + StrToSystem(std::to_string(Variables::get("word2"))));
 		}
 		catch (const char *ex)
 		{

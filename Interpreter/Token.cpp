@@ -2,13 +2,13 @@
 
 
 
-Token::Token(TokenType type, std::string text)
+Token::Token(const TokenType &type, std::string text)
 {
 	_type = type;
 	_text = text;
 }
 
-void Token::setTokenType(TokenType type)
+void Token::setTokenType(const TokenType &type)
 {
 	_type = type;
 }

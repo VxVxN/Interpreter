@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "Expression.h"
 
 class UnaryExpression : public Expression

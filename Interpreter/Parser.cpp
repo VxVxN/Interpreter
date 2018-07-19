@@ -2,35 +2,62 @@
 
 Parser::Parser(std::list<Token> tokenList)
 {
+	_EOF = Token(TokenType::END_OF_FILE, "");
 	_tokenList = tokenList;
 	_size = tokenList.size();
 	_pos = 0;
 }
 
-std::list<std::unique_ptr<Expression>> Parser::parse()
+std::list<std::unique_ptr<Statement>> Parser::parse()
 {
-	std::list<std::unique_ptr<Expression>> result;
+	std::list<std::unique_ptr<Statement>> result;
 	while (!match(TokenType::END_OF_FILE)) {
-		result.push_front(expression());
+		result.push_back(statement());
 	}
 	return result;
 }
 
-Token Parser::get(int relativePosition)
+///////////////private//////////////////////
+
+Token Parser::get(int relativePosition) const
 {
 	int position = _pos + relativePosition;
 	if (position >= _size) return _EOF;
 
-	std::list<Token>::iterator it = std::next(_tokenList.begin(), position);
-	return  *it;
+	return  *std::next(_tokenList.begin(), position);
 }
 
-bool Parser::match(TokenType type)
+bool Parser::match(const TokenType &type)
 {
 	Token current = get(0);
 	if (type != current.getTokenType()) return false;
 	_pos++;
 	return true;
+}
+
+//Token Parser::consume(TokenType type)
+//{
+//	Token current = get(0);
+//	if (type != current.getTokenType()) throw ("Parser: Token " + current.getText() + " doesn't match " + type);
+//	_pos++;
+//	return current;
+//}
+
+std::unique_ptr<Statement> Parser::statement()
+{
+	return assignmentStatement();
+}
+
+std::unique_ptr<Statement> Parser::assignmentStatement()
+{
+	Token current = get(0);
+	if (match(TokenType::WORD) && get(0).getTokenType() == TokenType::EQUAL) {
+		std::string variable = current.getText();
+		match(TokenType::EQUAL);
+		std::unique_ptr<Statement> AssignmentStatement(new AssignmentStatement(variable, *expression().release()));
+		return std::move(AssignmentStatement);
+	}
+	throw "Parser: Unknown statement";
 }
 
 std::unique_ptr<Expression> Parser::expression()
@@ -93,6 +120,10 @@ std::unique_ptr<Expression> Parser::primary()
 	Token current = get(0);
 	if (match(TokenType::NUMBER)) {
 		std::unique_ptr<Expression> result(new NumberExpression(atof(current.getText().c_str())));
+		return std::move(result);
+	}
+	if (match(TokenType::WORD)) {
+		std::unique_ptr<Expression> result(new VariableExpression(current.getText()));
 		return std::move(result);
 	}
 	if (match(TokenType::L_PARENTHESIS)) {

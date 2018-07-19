@@ -11,9 +11,8 @@ std::list<Token> LexicalAnalyzer::tokenize()
 {
 	while (_pos < _lengh) {
 		char current = peek(0);
-		if (isdigit(current)) {
-			tokenizeNumber();
-		}
+		if (isdigit(current))	   tokenizeNumber();
+		else if (isalpha(current)) tokenizeWord();
 		else if (OPERATOR_CHARS.find(current) != std::string::npos) {
 			tokenizeOperetor();
 		}
@@ -26,13 +25,13 @@ std::list<Token> LexicalAnalyzer::tokenize()
 
 ///////////////private//////////////////////////////////
 
-void LexicalAnalyzer::addToken(TokenType type)
+void LexicalAnalyzer::addToken(const TokenType &type)
 {
 	Token token(type, "");
 	tokenList.push_back(token);
 }
 
-void LexicalAnalyzer::addToken(TokenType type, std::string text)
+void LexicalAnalyzer::addToken(const TokenType &type, std::string text)
 {
 	Token token(type, text);
 	tokenList.push_back(token);
@@ -74,4 +73,18 @@ void LexicalAnalyzer::tokenizeOperetor()
 	int position = OPERATOR_CHARS.find(peek(0));
 	addToken(OPERATOR_TOKENS[position]);
 	next();
+}
+
+void LexicalAnalyzer::tokenizeWord()
+{
+	std::string buffer;
+	char current = peek(0);
+	while (true) {
+		if (!isalpha(current) && !isdigit(current) && (current != '_')) {
+			break;
+		}
+		buffer.append(&current);
+		current = next();
+	}
+	addToken(TokenType::WORD, buffer);
 }

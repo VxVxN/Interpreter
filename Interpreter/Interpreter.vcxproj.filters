@@ -25,12 +25,15 @@
     <Filter Include="Source Files\ast">
       <UniqueIdentifier>{5bb15865-b803-4c6b-a22a-174f3df78113}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\lib">
+      <UniqueIdentifier>{33e2210e-6bf7-4cfc-a7d7-ca7669b88a2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib">
+      <UniqueIdentifier>{8673fe70-ef2d-403b-b0fe-d23a1cc1b197}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="syntaxAnalyzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LexicalAnalyzer.cpp">
@@ -42,9 +45,6 @@
     <ClCompile Include="Parser.cpp">
       <Filter>Source Files\parser</Filter>
     </ClCompile>
-    <ClCompile Include="Expression.cpp">
-      <Filter>Source Files\ast</Filter>
-    </ClCompile>
     <ClCompile Include="NumberExpression.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
@@ -54,12 +54,18 @@
     <ClCompile Include="UnaryExpression.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
+    <ClCompile Include="VariableExpression.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="Variables.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentStatement.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="syntaxAnalyzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LexicalAnalyzer.h">
@@ -81,6 +87,18 @@
       <Filter>Header Files\ast</Filter>
     </ClInclude>
     <ClInclude Include="UnaryExpression.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableExpression.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="Variables.h">
+      <Filter>Header Files\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Statement.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentStatement.h">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
   </ItemGroup>

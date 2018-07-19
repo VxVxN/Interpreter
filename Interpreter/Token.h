@@ -2,14 +2,20 @@
 
 #include <String>
 
-enum class TokenType { NUMBER, PLUS, MINUS, STAR, SLASH, L_PARENTHESIS, R_PARENTHESIS, END_OF_FILE };
+enum class TokenType { 
+	NUMBER, PLUS, MINUS, STAR, SLASH, EQUAL,
+	L_PARENTHESIS, R_PARENTHESIS, 
+	WORD,
+	END_OF_FILE 
+};
 
 class Token
 {
 public:
-	Token(TokenType type, std::string text);
+	Token() {};
+	Token(const TokenType &type, std::string text);
 
-	void setTokenType(TokenType type);
+	void setTokenType(const TokenType &type);
 	TokenType getTokenType() const;
 
 	void setText(std::string text);
