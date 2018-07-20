@@ -13,6 +13,7 @@ std::list<Token> LexicalAnalyzer::tokenize()
 		char current = peek(0);
 		if (isdigit(current))	   tokenizeNumber();
 		else if (isalpha(current)) tokenizeWord();
+		else if (current == '"')   tokenizeText();
 		else if (OPERATOR_CHARS.find(current) != std::string::npos) {
 			tokenizeOperetor();
 		}
@@ -92,4 +93,31 @@ void LexicalAnalyzer::tokenizeWord()
 	else {
 		addToken(TokenType::WORD, buffer);
 	}
+}
+
+void LexicalAnalyzer::tokenizeText()
+{
+	next(); // skip "
+	std::string buffer;
+	char current = peek(0);
+	while (true) {
+		if (current == '\\') {
+			current = next();
+			switch (current) {
+			case '"': current = next(); buffer.append("\""); continue;
+			case 'n': current = next(); buffer.append("\r\n"); continue;
+			case 't': current = next(); buffer.append("\t"); continue;
+			}
+			buffer.append(std::to_string(current));
+			continue;
+		}
+		if (current == '"') {
+			break;
+		}
+		buffer.append(&current);
+		current = next();
+	}
+	next(); // skip close "
+
+	addToken(TokenType::TEXT, buffer);
 }

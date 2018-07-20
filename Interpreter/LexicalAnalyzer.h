@@ -34,5 +34,6 @@ private:
 	void tokenizeNumber();
 	void tokenizeOperetor();
 	void tokenizeWord();
+	void tokenizeText();
 };
 

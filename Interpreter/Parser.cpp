@@ -35,14 +35,6 @@ bool Parser::match(const TokenType &type)
 	return true;
 }
 
-//Token Parser::consume(TokenType type)
-//{
-//	Token current = get(0);
-//	if (type != current.getTokenType()) throw ("Parser: Token " + current.getText() + " doesn't match " + type);
-//	_pos++;
-//	return current;
-//}
-
 std::unique_ptr<IStatement> Parser::statement()
 {
 	if (match(TokenType::PRINT)) {
@@ -123,11 +115,15 @@ std::unique_ptr<IExpression> Parser::primary()
 {
 	Token current = get(0);
 	if (match(TokenType::NUMBER)) {
-		std::unique_ptr<IExpression> result(std::make_unique<NumberExpression>(atof(current.getText().c_str())));
+		std::unique_ptr<IExpression> result(std::make_unique<ValueExpression>(atof(current.getText().c_str())));
 		return std::move(result);
 	}
 	if (match(TokenType::WORD)) {
 		std::unique_ptr<IExpression> result(std::make_unique<VariableExpression>(current.getText()));
+		return std::move(result);
+	}
+	if (match(TokenType::TEXT)) {
+		std::unique_ptr<IExpression> result(std::make_unique<ValueExpression>(current.getText()));
 		return std::move(result);
 	}
 	if (match(TokenType::L_PARENTHESIS)) {

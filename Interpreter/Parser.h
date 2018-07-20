@@ -6,7 +6,7 @@
 
 #include "Token.h"
 #include "IExpression.h"
-#include "NumberExpression.h"
+#include "ValueExpression.h"
 #include "BinaryExpression.h"
 #include "UnaryExpression.h"
 #include "VariableExpression.h"
@@ -29,7 +29,6 @@ private:
 
 	Token get(int relativePosition) const;
 	bool match(const TokenType &type);
-	//Token consume(TokenType type);
 
 	std::unique_ptr<IStatement> statement();
 	std::unique_ptr<IStatement> assignmentStatement();

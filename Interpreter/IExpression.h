@@ -4,9 +4,13 @@
 #include <cstdlib>
 #include <memory>
 
+#include "IValue.h"
+#include "NumberValue.h"
+#include "StringValue.h"
+
 class IExpression
 {
 public:
-	virtual double eval() = 0;
+	virtual std::shared_ptr<IValue> eval() = 0;
 };
 

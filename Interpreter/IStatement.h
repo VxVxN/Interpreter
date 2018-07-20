@@ -3,6 +3,7 @@
 #include <string>
 
 #include "IExpression.h"
+#include "StringValue.h"
 
 class IStatement
 {

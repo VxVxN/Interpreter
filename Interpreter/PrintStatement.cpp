@@ -13,5 +13,5 @@ PrintStatement::PrintStatement(IExpression & expression)
 
 std::string PrintStatement::execute()
 {
-	return std::to_string(_expression->eval());
+	return _expression->eval()->asString();
 }

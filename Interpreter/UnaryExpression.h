@@ -7,7 +7,7 @@ class UnaryExpression : public IExpression
 public:
 	UnaryExpression(char operation, IExpression &expr);
 
-	double eval() override final;
+	std::shared_ptr<IValue> eval() override final;
 
 private:
 	std::unique_ptr<IExpression> _expr;

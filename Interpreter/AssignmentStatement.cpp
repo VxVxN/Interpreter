@@ -11,7 +11,6 @@ AssignmentStatement::AssignmentStatement(std::string variable, IExpression & exp
 
 std::string AssignmentStatement::execute()
 {
-	double result = _expression->eval();
-	Variables::set(_variable, result);
+	Variables::set(_variable,  _expression->eval());
 	return "";
 }

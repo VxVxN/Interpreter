@@ -140,9 +140,11 @@
     <ClCompile Include="BinaryExpression.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="NumberExpression.cpp" />
+    <ClCompile Include="ValueExpression.cpp" />
+    <ClCompile Include="NumberValue.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PrintStatement.cpp" />
+    <ClCompile Include="StringValue.cpp" />
     <ClCompile Include="Token.cpp" />
     <ClCompile Include="UnaryExpression.cpp" />
     <ClCompile Include="VariableExpression.cpp" />
@@ -152,14 +154,17 @@
     <ClInclude Include="AssignmentStatement.h" />
     <ClInclude Include="BinaryExpression.h" />
     <ClInclude Include="IExpression.h" />
+    <ClInclude Include="IValue.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="NumberExpression.h" />
+    <ClInclude Include="ValueExpression.h" />
+    <ClInclude Include="NumberValue.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PrintStatement.h" />
     <ClInclude Include="IStatement.h" />
+    <ClInclude Include="StringValue.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="UnaryExpression.h" />
     <ClInclude Include="VariableExpression.h" />

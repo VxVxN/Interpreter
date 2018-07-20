@@ -6,7 +6,7 @@
 #include "LexicalAnalyzer.h"
 #include "Token.h"
 #include "IExpression.h"
-#include "NumberExpression.h"
+#include "ValueExpression.h"
 #include "BinaryExpression.h"
 #include "Parser.h"
 #include "AssignmentStatement.h"
@@ -166,7 +166,8 @@ namespace Interpreter {
 			this->textBoxProg->ScrollBars = System::Windows::Forms::ScrollBars::Both;
 			this->textBoxProg->Size = System::Drawing::Size(682, 219);
 			this->textBoxProg->TabIndex = 5;
-			this->textBoxProg->Text = L"word=2+3\r\nword2=PI+word\r\nprint word\r\nprint word2";
+			this->textBoxProg->Text = L"word = 2 + 3\r\nword2 = PI + word\r\nprint \"word = \" + word + \"\\n\"\r\nprint \"word2 = \" "
+				L"+ word2";
 			// 
 			// MyForm
 			// 
@@ -216,23 +217,19 @@ namespace Interpreter {
 		{
 			std::list<Token> tokenList = lexicalAnalyzer.tokenize();
 
-			//for (Token token : tokenList) {
-			//	textBoxConsol->AppendText(StrToSystem(token.getText()));
-			//}
-			//textBoxConsol->AppendText(StrToSystem("\n"));
-
 			Parser *parser = new Parser(tokenList);
 			std::list<std::unique_ptr<IStatement>> statements(parser->parse());
 
 			for (std::unique_ptr<IStatement> &statement : statements) {
 				if (statement->execute() != "")
-					textBoxConsol->AppendText(StrToSystem(statement->execute() + "\n"));
+					textBoxConsol->AppendText(StrToSystem(statement->execute()));
 			}
 		}
 		catch (const char *ex)
 		{
 			textBoxError->AppendText(StrToSystem(ex));
 		}
+		Variables::clear();
 	}
 };
 }
