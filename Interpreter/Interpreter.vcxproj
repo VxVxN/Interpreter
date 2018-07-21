@@ -142,7 +142,7 @@
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="ValueExpression.cpp" />
     <ClCompile Include="NumberValue.cpp" />
-    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="SyntaxAnalyzer.cpp" />
     <ClCompile Include="PrintStatement.cpp" />
     <ClCompile Include="StringValue.cpp" />
     <ClCompile Include="Token.cpp" />
@@ -161,7 +161,7 @@
     </ClInclude>
     <ClInclude Include="ValueExpression.h" />
     <ClInclude Include="NumberValue.h" />
-    <ClInclude Include="Parser.h" />
+    <ClInclude Include="SyntaxAnalyzer.h" />
     <ClInclude Include="PrintStatement.h" />
     <ClInclude Include="IStatement.h" />
     <ClInclude Include="StringValue.h" />

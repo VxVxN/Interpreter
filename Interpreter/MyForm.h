@@ -8,7 +8,7 @@
 #include "IExpression.h"
 #include "ValueExpression.h"
 #include "BinaryExpression.h"
-#include "Parser.h"
+#include "SyntaxAnalyzer.h"
 #include "AssignmentStatement.h"
 
 namespace Interpreter {
@@ -217,8 +217,8 @@ namespace Interpreter {
 		{
 			std::list<Token> tokenList = lexicalAnalyzer.tokenize();
 
-			Parser *parser = new Parser(tokenList);
-			std::list<std::unique_ptr<IStatement>> statements(parser->parse());
+			SyntaxAnalyzer *syntaxAnalyzer = new SyntaxAnalyzer(tokenList);
+			std::list<std::unique_ptr<IStatement>> statements(syntaxAnalyzer->parse());
 
 			for (std::unique_ptr<IStatement> &statement : statements) {
 				if (statement->execute() != "")
