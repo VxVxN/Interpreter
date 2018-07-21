@@ -13,5 +13,8 @@ PrintStatement::PrintStatement(IExpression & expression)
 
 std::string PrintStatement::execute()
 {
-	return _expression->eval()->asString();
+	std::string str = _expression->eval()->asString();
+	str = str.substr(0, str.find_last_not_of('0') + 1);
+	str = str.substr(0, str.find_last_not_of('.') + 1);
+	return str;
 }

@@ -8,6 +8,8 @@
 class Variables
 {
 public:
+	Variables() = delete;
+
 	static bool isExists(std::string key);
 	static const std::shared_ptr<IValue> &get(std::string key);
 	static void set(std::string key, const std::shared_ptr<IValue> &value);

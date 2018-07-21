@@ -1,9 +1,4 @@
-﻿  AssignmentStatement.cpp
-  MyForm.cpp
-  Parser.cpp
-  VariableExpression.cpp
-  Variables.cpp
-  Создание кода...
-c:\users\владимир\desktop\interpreter\interpreter\variables.cpp(10): warning C4172: возвращение адреса локальной или временной переменной
+﻿  BinaryExpression.cpp
+c:\users\владимир\desktop\interpreter\interpreter\binaryexpression.cpp(54): warning C4715: BinaryExpression::eval: значение возвращается не при всех путях выполнения
   AssignmentStatement.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   Interpreter.vcxproj -> C:\Users\Владимир\Desktop\Interpreter\Debug\Interpreter.exe

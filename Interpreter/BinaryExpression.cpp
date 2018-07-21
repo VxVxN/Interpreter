@@ -19,9 +19,16 @@ std::shared_ptr<IValue> BinaryExpression::eval()
 	IValue *value1 = &(*pExpr1);
 	IValue *value2 = &(*pExpr2);
 	
-	if (dynamic_cast<StringValue*>(value1)) {
+	if (dynamic_cast<StringValue*>(value1) || dynamic_cast<StringValue*>(value2)) {
 		std::string string1 = value1->asString();
 		std::string string2 = value2->asString();
+
+		// убираем лишний нули у строк
+		auto removeZeros = [](std::string &str) { str = str.substr(0, str.find_last_not_of('0') + 1);
+												  str = str.substr(0, str.find_last_not_of('.') + 1); };
+
+		removeZeros(string1);
+		removeZeros(string2);
 
 		switch (_operation)
 		{

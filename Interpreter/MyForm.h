@@ -191,7 +191,7 @@ namespace Interpreter {
 		}
 #pragma endregion
 
-		std::string SystemToStl(String ^s)
+		std::string SystemToStr(String ^s)
 		{
 			using namespace Runtime::InteropServices;
 			const char* ptr = (const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
@@ -211,7 +211,7 @@ namespace Interpreter {
 	private: System::Void âûïîëíèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		textBoxConsol->Text = "";
 		textBoxError->Text = "";
-		std::string input = SystemToStl(textBoxProg->Text);
+		std::string input = SystemToStr(textBoxProg->Text);
 		LexicalAnalyzer lexicalAnalyzer(input);
 		try
 		{
