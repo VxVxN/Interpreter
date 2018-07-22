@@ -1,17 +1,17 @@
 #include "NumberValue.h"
 
 
-
-NumberValue::NumberValue()
-{
-}
-
 NumberValue::NumberValue(double value)
 {
 	_value = value;
 }
 
-double NumberValue::asDouble()
+NumberValue::NumberValue(bool value)
+{
+	_value = value ? 1 : 0;
+}
+
+double NumberValue::asNumber()
 {
 	return _value;
 }

@@ -13,6 +13,8 @@
 #include "IStatement.h"
 #include "AssignmentStatement.h"
 #include "PrintStatement.h"
+#include "ConditionalExpression.h"
+#include "ConditionalStatement.h"
 
 class SyntaxAnalyzer
 {
@@ -32,8 +34,10 @@ private:
 
 	std::unique_ptr<IStatement> statement();
 	std::unique_ptr<IStatement> assignmentStatement();
+	std::unique_ptr<IStatement> conditionalStatement();
 
 	std::unique_ptr<IExpression> expression();
+	std::unique_ptr<IExpression> conditional();
 	std::unique_ptr<IExpression> additive();
 	std::unique_ptr<IExpression> multiplicative();
 	std::unique_ptr<IExpression> unary();

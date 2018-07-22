@@ -36,14 +36,14 @@ std::shared_ptr<IValue> BinaryExpression::eval()
 		}
 	}
 
-	double expr1 = value1->asDouble();
-	double expr2 = value2->asDouble();
+	double number1 = value1->asNumber();
+	double number2 = value2->asNumber();
 
 	switch (_operation)
 	{
-	case '+': return std::make_shared<NumberValue>(expr1 + expr2);
-	case '-': return std::make_shared<NumberValue>(expr1 - expr2);
-	case '*': return std::make_shared<NumberValue>(expr1 * expr2);
-	case '/': return std::make_shared<NumberValue>(expr1 / expr2);
+	case '+': return std::make_shared<NumberValue>(number1 + number2);
+	case '-': return std::make_shared<NumberValue>(number1 - number2);
+	case '*': return std::make_shared<NumberValue>(number1 * number2);
+	case '/': return std::make_shared<NumberValue>(number1 / number2);
 	}
 }

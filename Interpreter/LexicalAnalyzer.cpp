@@ -87,9 +87,10 @@ void LexicalAnalyzer::tokenizeWord()
 		buffer.append(&current);
 		current = next();
 	}
-	if (buffer == "print") {
-		addToken(TokenType::PRINT);
-	}
+
+	if (buffer == "print")      addToken(TokenType::PRINT);
+	else if (buffer == "if")	addToken(TokenType::IF);   
+	else if (buffer == "else")  addToken(TokenType::ELSE);
 	else {
 		addToken(TokenType::WORD, buffer);
 	}

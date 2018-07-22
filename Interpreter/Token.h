@@ -3,11 +3,12 @@
 #include <String>
 
 enum class TokenType { 
-	NUMBER, PLUS, MINUS, STAR, SLASH, EQUAL,
+	NUMBER, PLUS, MINUS, STAR, SLASH, 
+	EQUAL, LESS, MORE,
 	L_PARENTHESIS, R_PARENTHESIS, 
 	WORD, TEXT,
 	//keyword
-	PRINT,
+	IF, ELSE, PRINT,
 	END_OF_FILE 
 };
 

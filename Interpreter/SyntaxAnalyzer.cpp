@@ -41,6 +41,9 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::statement()
 		std::unique_ptr<IStatement> statement(std::make_unique<PrintStatement>(*expression().release()));
 		return statement;
 	}
+	if (match(TokenType::IF)) {
+		return conditionalStatement();
+	}
 	return assignmentStatement();
 }
 
@@ -53,12 +56,49 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::assignmentStatement()
 		std::unique_ptr<IStatement> AssignmentStatement(std::make_unique<AssignmentStatement>(variable, *expression().release()));
 		return std::move(AssignmentStatement);
 	}
-	throw "Parser: Unknown statement";
+	throw "SyntaxAnalyzer: Unknown statement";
+}
+
+std::unique_ptr<IStatement> SyntaxAnalyzer::conditionalStatement()
+{
+	std::unique_ptr<IExpression> condition(expression());
+	std::unique_ptr<IStatement> ifStatement(statement());
+	std::unique_ptr<IStatement> elseStatement;
+	if (match(TokenType::ELSE)) {
+		elseStatement =statement();
+	}
+
+	std::unique_ptr<IStatement> pStatement(std::make_unique<ConditionalStatement>(*condition.release(), *ifStatement.release(), *elseStatement.release()));
+	return std::move(pStatement);
 }
 
 std::unique_ptr<IExpression> SyntaxAnalyzer::expression()
 {
-	return additive();
+	return conditional();
+}
+
+std::unique_ptr<IExpression> SyntaxAnalyzer::conditional()
+{
+	std::unique_ptr<IExpression> result(additive());
+	while (true) {
+		if (match(TokenType::EQUAL)) {
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>('=', *result.release(), *multiplicative().release()));
+			result = std::move(pExpr);
+			continue;
+		}
+		if (match(TokenType::LESS)) {
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>('<', *result.release(), *multiplicative().release()));
+			result = std::move(pExpr);
+			continue;
+		}
+		if (match(TokenType::MORE)) {
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>('>', *result.release(), *multiplicative().release()));
+			result = std::move(pExpr);
+			continue;
+		}
+		break;
+	}
+	return std::move(result);
 }
 
 std::unique_ptr<IExpression> SyntaxAnalyzer::additive()
@@ -131,5 +171,5 @@ std::unique_ptr<IExpression> SyntaxAnalyzer::primary()
 		match(TokenType::R_PARENTHESIS);
 		return std::move(result);
 	}
-	throw "Parser: Unknown expression";
+	throw "SyntaxAnalyzer: Unknown expression";
 }

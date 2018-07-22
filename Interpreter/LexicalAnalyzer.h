@@ -16,12 +16,12 @@ public:
 	std::list<Token> tokenize();
 private:
 	std::string _input;
-	const std::string OPERATOR_CHARS = "+-*/()=";
-	TokenType OPERATOR_TOKENS[7] = {
+	const std::string OPERATOR_CHARS = "+-*/()=<>";
+	TokenType OPERATOR_TOKENS[9] = {
 		TokenType::PLUS, TokenType::MINUS,
 		TokenType::STAR, TokenType::SLASH,
 		TokenType::L_PARENTHESIS, TokenType::R_PARENTHESIS,
-		TokenType::EQUAL
+		TokenType::EQUAL, TokenType::LESS, TokenType::MORE
 	};
 	int _pos, _lengh;
 

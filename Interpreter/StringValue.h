@@ -5,10 +5,10 @@
 class StringValue : public IValue
 {
 public:
-	StringValue();
+	StringValue() = delete;
 	StringValue(std::string value);
 
-	virtual double asDouble() override final;
+	virtual double asNumber() override final;
 	virtual std::string asString() override final;
 
 private:

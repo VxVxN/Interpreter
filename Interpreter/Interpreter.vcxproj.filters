@@ -72,6 +72,12 @@
     <ClCompile Include="SyntaxAnalyzer.cpp">
       <Filter>Source Files\parser</Filter>
     </ClCompile>
+    <ClCompile Include="ConditionalExpression.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="ConditionalStatement.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -121,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="SyntaxAnalyzer.h">
       <Filter>Header Files\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionalExpression.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionalStatement.h">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

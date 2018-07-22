@@ -2,16 +2,12 @@
 
 
 
-StringValue::StringValue()
-{
-}
-
 StringValue::StringValue(std::string value)
 {
 	_value = value;
 }
 
-double StringValue::asDouble()
+double StringValue::asNumber()
 {
 	try
 	{

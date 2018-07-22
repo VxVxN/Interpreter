@@ -9,7 +9,7 @@ UnaryExpression::UnaryExpression(char operation, IExpression &expr)
 
 std::shared_ptr<IValue> UnaryExpression::eval()
 {
-	std::shared_ptr<IValue> pValue(std::make_shared<NumberValue>(-_expr->eval()->asDouble()));
+	std::shared_ptr<IValue> pValue(std::make_shared<NumberValue>(-_expr->eval()->asNumber()));
 	switch (_operation)
 	{
 	case '+': return _expr->eval();

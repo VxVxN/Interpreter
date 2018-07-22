@@ -5,8 +5,8 @@
 class PrintStatement : public IStatement
 {
 public:
-	PrintStatement();
-	PrintStatement(IExpression & expression);
+	PrintStatement() = delete;
+	PrintStatement(IExpression &expression);
 
 	virtual std::string execute() override final;
 
