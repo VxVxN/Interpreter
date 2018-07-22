@@ -2,7 +2,7 @@
 
 
 
-AssignmentStatement::AssignmentStatement(std::string variable, IExpression & expression)
+AssignmentStatement::AssignmentStatement(std::string variable, IExpression &expression)
 {
 	_variable = variable;
 	std::unique_ptr<IExpression> pExpr(&expression);

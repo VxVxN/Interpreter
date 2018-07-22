@@ -13,6 +13,7 @@ const std::shared_ptr<IValue> &Variables::get(std::string key)
 
 void Variables::set(std::string key, const std::shared_ptr<IValue> &value)
 {
+	if (isExists(key)) _variables.erase(key);
 	_variables.insert( std::pair<std::string, std::shared_ptr<IValue>>(key, value) );
 }
 
