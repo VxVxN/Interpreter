@@ -3,6 +3,7 @@
 #include <string>
 #include <list>
 #include <cctype>
+#include <map>
 
 #include "Token.h"
 
@@ -16,13 +17,9 @@ public:
 	std::list<Token> tokenize();
 private:
 	std::string _input;
-	const std::string OPERATOR_CHARS = "+-*/()=<>";
-	TokenType OPERATOR_TOKENS[9] = {
-		TokenType::PLUS, TokenType::MINUS,
-		TokenType::STAR, TokenType::SLASH,
-		TokenType::L_PARENTHESIS, TokenType::R_PARENTHESIS,
-		TokenType::EQUAL, TokenType::LESS, TokenType::MORE
-	};
+	const std::string OPERATOR_CHARS = "+-*/()=<>!";
+
+	static std::map<std::string, TokenType> _OPERATORS;
 	int _pos, _lengh;
 
 	void addToken(const TokenType &type);

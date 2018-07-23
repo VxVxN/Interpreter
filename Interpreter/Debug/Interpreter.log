@@ -1,6 +1,4 @@
-﻿  AssignmentStatement.cpp
-  Variables.cpp
-  Создание кода...
-c:\users\владимир\desktop\interpreter\interpreter\variables.cpp(10): warning C4172: возвращение адреса локальной или временной переменной
+﻿  SyntaxAnalyzer.cpp
+c:\users\владимир\desktop\interpreter\interpreter\conditionalexpression.h(12): warning C4091: static value : пропускается слева от "ConditionalExpression::OPERATOR", когда ни одна переменная не объявлена
   AssignmentStatement.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   Interpreter.vcxproj -> C:\Users\Владимир\Desktop\Interpreter\Debug\Interpreter.exe

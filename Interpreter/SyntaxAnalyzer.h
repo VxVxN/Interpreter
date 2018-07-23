@@ -37,6 +37,9 @@ private:
 	std::unique_ptr<IStatement> conditionalStatement();
 
 	std::unique_ptr<IExpression> expression();
+	std::unique_ptr<IExpression> logicalOr();
+	std::unique_ptr<IExpression> logicalAnd();
+	std::unique_ptr<IExpression> equality();
 	std::unique_ptr<IExpression> conditional();
 	std::unique_ptr<IExpression> additive();
 	std::unique_ptr<IExpression> multiplicative();

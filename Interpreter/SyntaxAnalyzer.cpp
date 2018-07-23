@@ -74,25 +74,75 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::conditionalStatement()
 
 std::unique_ptr<IExpression> SyntaxAnalyzer::expression()
 {
-	return conditional();
+	return logicalOr();
+}
+
+std::unique_ptr<IExpression> SyntaxAnalyzer::logicalOr() {
+	std::unique_ptr<IExpression> result(logicalAnd());
+
+	while (true) {
+		if (match(TokenType::LOGICAL_OR)) {
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>(ConditionalExpression::OPERATOR::LOGICAL_OR, *result.release(), *equality().release()));
+			result = std::move(pExpr);
+			continue;
+		}
+		break;
+	}
+
+	return result;
+}
+
+std::unique_ptr<IExpression> SyntaxAnalyzer::logicalAnd() {
+	std::unique_ptr<IExpression> result(equality());
+
+	while (true) {
+		if (match(TokenType::LOGICAL_AND)) {
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>(ConditionalExpression::OPERATOR::LOGICAL_AND, *result.release(), *equality().release()));
+			result = std::move(pExpr);
+			continue;
+		}
+		break;
+	}
+
+	return result;
+}
+
+std::unique_ptr<IExpression> SyntaxAnalyzer::equality() {
+	std::unique_ptr<IExpression> result(conditional());
+
+	if (match(TokenType::EQUAL)) {
+		std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>(ConditionalExpression::OPERATOR::EQUAL, *result.release(), *conditional().release()));
+		return std::move(pExpr);
+	}
+	if (match(TokenType::NOT_EQUAL)) {
+		std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>(ConditionalExpression::OPERATOR::NOT_EQUAL, *result.release(), *conditional().release()));
+		return std::move(pExpr);
+	}
+
+	return result;
 }
 
 std::unique_ptr<IExpression> SyntaxAnalyzer::conditional()
 {
 	std::unique_ptr<IExpression> result(additive());
 	while (true) {
-		if (match(TokenType::EQUAL)) {
-			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>('=', *result.release(), *multiplicative().release()));
+		if (match(TokenType::LESS_OR_EQUAL)) {
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>(ConditionalExpression::OPERATOR::LESS_OR_EQUAL, *result.release(), *multiplicative().release()));
+			result = std::move(pExpr);
+			continue;
+		}
+		if (match(TokenType::MORE_OR_EQUAL)) {
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>(ConditionalExpression::OPERATOR::MORE_OR_EQUAL, *result.release(), *multiplicative().release()));
 			result = std::move(pExpr);
 			continue;
 		}
 		if (match(TokenType::LESS)) {
-			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>('<', *result.release(), *multiplicative().release()));
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>(ConditionalExpression::OPERATOR::LESS, *result.release(), *multiplicative().release()));
 			result = std::move(pExpr);
 			continue;
 		}
 		if (match(TokenType::MORE)) {
-			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>('>', *result.release(), *multiplicative().release()));
+			std::unique_ptr<IExpression> pExpr(std::make_unique<ConditionalExpression>(ConditionalExpression::OPERATOR::MORE_OR_EQUAL, *result.release(), *multiplicative().release()));
 			result = std::move(pExpr);
 			continue;
 		}

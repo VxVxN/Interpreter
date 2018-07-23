@@ -26,6 +26,22 @@ std::list<Token> LexicalAnalyzer::tokenize()
 
 ///////////////private//////////////////////////////////
 
+std::map<std::string, TokenType> LexicalAnalyzer::_OPERATORS = {{ "+", TokenType::PLUS },
+																{ "-", TokenType::MINUS },
+																{ "*", TokenType::STAR },
+																{ "/", TokenType::SLASH },
+
+																{ "(", TokenType::L_PARENTHESIS },
+																{ ")", TokenType::R_PARENTHESIS },
+
+																{ "=", TokenType::EQUAL },
+																{ "<", TokenType::LESS },
+																{ ">", TokenType::MORE },
+																{ "!=", TokenType::NOT_EQUAL },
+																{ "<=", TokenType::LESS_OR_EQUAL },
+																{ ">=", TokenType::MORE_OR_EQUAL },
+};
+
 void LexicalAnalyzer::addToken(const TokenType &type)
 {
 	Token token(type, "");
@@ -71,9 +87,17 @@ void LexicalAnalyzer::tokenizeNumber()
 
 void LexicalAnalyzer::tokenizeOperetor()
 {
-	int position = OPERATOR_CHARS.find(peek(0));
-	addToken(OPERATOR_TOKENS[position]);
-	next();
+	char current = peek(0);
+	std::string buffer;
+	while (true) {
+		std::string text = buffer;
+		if (!_OPERATORS.count(text + current) && !text.empty()) {
+			addToken(_OPERATORS[text]);
+			break;
+		}
+		buffer.append(&current);
+		current = next();
+	}
 }
 
 void LexicalAnalyzer::tokenizeWord()
@@ -91,6 +115,8 @@ void LexicalAnalyzer::tokenizeWord()
 	if (buffer == "print")      addToken(TokenType::PRINT);
 	else if (buffer == "if")	addToken(TokenType::IF);   
 	else if (buffer == "else")  addToken(TokenType::ELSE);
+	else if (buffer == "and")	addToken(TokenType::LOGICAL_AND);
+	else if (buffer == "or")	addToken(TokenType::LOGICAL_OR);
 	else {
 		addToken(TokenType::WORD, buffer);
 	}
