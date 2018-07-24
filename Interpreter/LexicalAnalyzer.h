@@ -32,5 +32,7 @@ private:
 	void tokenizeOperetor();
 	void tokenizeWord();
 	void tokenizeText();
+	void tokenizeComment();
+	void tokenizeMultilineComment();
 };
 

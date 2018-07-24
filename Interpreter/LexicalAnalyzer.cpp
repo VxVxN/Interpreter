@@ -88,12 +88,26 @@ void LexicalAnalyzer::tokenizeNumber()
 void LexicalAnalyzer::tokenizeOperetor()
 {
 	char current = peek(0);
-	std::string buffer;
+	if (current == '/') {
+		if (peek(1) == '/') {
+			next();
+			next();
+			tokenizeComment();
+			return;
+		}
+		else if (peek(1) == '*') {
+			next();
+			next();
+			tokenizeMultilineComment();
+			return;
+		}
+	}
+	std::string buffer("");
 	while (true) {
 		std::string text = buffer;
 		if (!_OPERATORS.count(text + current) && !text.empty()) {
 			addToken(_OPERATORS[text]);
-			break;
+			return;
 		}
 		buffer.append(&current);
 		current = next();
@@ -147,4 +161,25 @@ void LexicalAnalyzer::tokenizeText()
 	next(); // skip close "
 
 	addToken(TokenType::TEXT, buffer);
+}
+
+void LexicalAnalyzer::tokenizeComment()
+{
+	std::string str("\n\0");
+	char current = peek(0);
+	while (str.find(current) && current != '\0') {
+		current = next();
+	}
+}
+
+void LexicalAnalyzer::tokenizeMultilineComment()
+{
+	char current = peek(0);
+	while (true) {
+		if (current == '\0') throw "LexicalAnalyzer: Missing close tag";
+		if (current == '*' && peek(1) == '/') break;
+		current = next();
+	}
+	next(); // skip *
+	next(); // skip /
 }
