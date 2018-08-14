@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="AssignmentStatement.cpp" />
     <ClCompile Include="BinaryExpression.cpp" />
+    <ClCompile Include="BlockStatement.cpp" />
     <ClCompile Include="ConditionalExpression.cpp" />
     <ClCompile Include="ConditionalStatement.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="AssignmentStatement.h" />
     <ClInclude Include="BinaryExpression.h" />
+    <ClInclude Include="BlockStatement.h" />
     <ClInclude Include="ConditionalExpression.h" />
     <ClInclude Include="ConditionalStatement.h" />
     <ClInclude Include="IExpression.h" />

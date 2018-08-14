@@ -218,12 +218,9 @@ namespace Interpreter {
 			std::list<Token> tokenList = lexicalAnalyzer.tokenize();
 
 			SyntaxAnalyzer *syntaxAnalyzer = new SyntaxAnalyzer(tokenList);
-			std::list<std::unique_ptr<IStatement>> statements(syntaxAnalyzer->parse());
+			std::unique_ptr<IStatement> program(syntaxAnalyzer->parse());
 
-			for (std::unique_ptr<IStatement> &statement : statements) {
-				if (statement->execute() != "")
-					textBoxConsol->AppendText(StrToSystem(statement->execute()));
-			}
+			textBoxConsol->AppendText(StrToSystem(program->execute()));
 		}
 		catch (const char *ex)
 		{

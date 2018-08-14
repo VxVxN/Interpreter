@@ -8,11 +8,11 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::list<Token> tokenList)
 	_pos = 0;
 }
 
-std::list<std::unique_ptr<IStatement>> SyntaxAnalyzer::parse()
+std::unique_ptr<IStatement> SyntaxAnalyzer::parse()
 {
-	std::list<std::unique_ptr<IStatement>> result;
+	std::unique_ptr<BlockStatement> result(std::make_unique<BlockStatement>());
 	while (!match(TokenType::END_OF_FILE)) {
-		result.push_back(statement());
+		result->add(statement());
 	}
 	return result;
 }
@@ -33,6 +33,22 @@ bool SyntaxAnalyzer::match(const TokenType &type)
 	if (type != current.getTokenType()) return false;
 	_pos++;
 	return true;
+}
+
+std::unique_ptr<IStatement> SyntaxAnalyzer::block()
+{
+	std::unique_ptr<BlockStatement> block(std::make_unique<BlockStatement>());
+	match(TokenType::L_BRACE);
+	while (!match(TokenType::R_BRACE)) {
+		block->add(statement());
+	}
+	return block;
+}
+
+std::unique_ptr<IStatement> SyntaxAnalyzer::statementOrBlock()
+{
+	if (get(0).getTokenType() == TokenType::L_BRACE) return block();
+	return statement();
 }
 
 std::unique_ptr<IStatement> SyntaxAnalyzer::statement()
@@ -62,10 +78,10 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::assignmentStatement()
 std::unique_ptr<IStatement> SyntaxAnalyzer::conditionalStatement()
 {
 	std::unique_ptr<IExpression> condition(expression());
-	std::unique_ptr<IStatement> ifStatement(statement());
+	std::unique_ptr<IStatement> ifStatement(statementOrBlock());
 	std::unique_ptr<IStatement> elseStatement;
 	if (match(TokenType::ELSE)) {
-		elseStatement =statement();
+		elseStatement = statementOrBlock();
 	}
 
 	std::unique_ptr<IStatement> pStatement(std::make_unique<ConditionalStatement>(*condition.release(), *ifStatement.release(), *elseStatement.release()));

@@ -78,6 +78,9 @@
     <ClCompile Include="ConditionalStatement.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
+    <ClCompile Include="BlockStatement.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files\ast</Filter>
     </ClInclude>
     <ClInclude Include="ConditionalStatement.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockStatement.h">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
   </ItemGroup>

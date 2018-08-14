@@ -33,6 +33,8 @@ std::map<std::string, TokenType> LexicalAnalyzer::_OPERATORS = {{ "+", TokenType
 
 																{ "(", TokenType::L_PARENTHESIS },
 																{ ")", TokenType::R_PARENTHESIS },
+																{ "{", TokenType::L_BRACE },
+																{ "}", TokenType::R_BRACE },
 
 																{ "=", TokenType::EQUAL },
 																{ "<", TokenType::LESS },

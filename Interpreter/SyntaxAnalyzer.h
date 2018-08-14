@@ -15,13 +15,14 @@
 #include "PrintStatement.h"
 #include "ConditionalExpression.h"
 #include "ConditionalStatement.h"
+#include "BlockStatement.h"
 
 class SyntaxAnalyzer
 {
 public:
 	SyntaxAnalyzer(std::list<Token> tokenList);
 
-	std::list<std::unique_ptr<IStatement>> parse();
+	std::unique_ptr<IStatement> parse();
 
 private:
 	int _pos;
@@ -32,6 +33,8 @@ private:
 	Token get(int relativePosition) const;
 	bool match(const TokenType &type);
 
+	std::unique_ptr<IStatement> block();
+	std::unique_ptr<IStatement> statementOrBlock();
 	std::unique_ptr<IStatement> statement();
 	std::unique_ptr<IStatement> assignmentStatement();
 	std::unique_ptr<IStatement> conditionalStatement();

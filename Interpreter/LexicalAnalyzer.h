@@ -17,7 +17,7 @@ public:
 	std::list<Token> tokenize();
 private:
 	std::string _input;
-	const std::string OPERATOR_CHARS = "+-*/()=<>!";
+	const std::string OPERATOR_CHARS = "+-*/()=<>!{}";
 
 	static std::map<std::string, TokenType> _OPERATORS;
 	int _pos, _lengh;

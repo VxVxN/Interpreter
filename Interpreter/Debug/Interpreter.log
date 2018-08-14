@@ -1,3 +1,8 @@
-﻿  LexicalAnalyzer.cpp
+﻿  BlockStatement.cpp
+  MyForm.cpp
+c:\users\владимир\desktop\interpreter\interpreter\conditionalexpression.h(12): warning C4091: static value : пропускается слева от "ConditionalExpression::OPERATOR", когда ни одна переменная не объявлена
+  SyntaxAnalyzer.cpp
+c:\users\владимир\desktop\interpreter\interpreter\conditionalexpression.h(12): warning C4091: static value : пропускается слева от "ConditionalExpression::OPERATOR", когда ни одна переменная не объявлена
+  Создание кода...
   AssignmentStatement.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   Interpreter.vcxproj -> C:\Users\Владимир\Desktop\Interpreter\Debug\Interpreter.exe
