@@ -60,6 +60,12 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::statement()
 	if (match(TokenType::IF)) {
 		return conditionalStatement();
 	}
+	if (match(TokenType::WHILE)) {
+		return whileStatement();
+	}
+	if (match(TokenType::FOR)) {
+		return forStatement();
+	}
 	return assignmentStatement();
 }
 
@@ -86,6 +92,24 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::conditionalStatement()
 
 	std::unique_ptr<IStatement> pStatement(std::make_unique<ConditionalStatement>(*condition.release(), *ifStatement.release(), *elseStatement.release()));
 	return std::move(pStatement);
+}
+
+std::unique_ptr<IStatement> SyntaxAnalyzer::whileStatement()
+{
+	std::unique_ptr<IExpression> condition = expression();
+	std::unique_ptr<IStatement> statement = statementOrBlock();
+	return std::make_unique<WhileStatement>(condition, statement);
+}
+
+std::unique_ptr<IStatement> SyntaxAnalyzer::forStatement()
+{
+	std::unique_ptr<IStatement>	 initialization	= assignmentStatement();
+	match(TokenType::SEMICOLON);
+	std::unique_ptr<IExpression> termination	= expression();
+	match(TokenType::SEMICOLON);
+	std::unique_ptr<IStatement>	 increment		= assignmentStatement();
+	std::unique_ptr<IStatement>  statement		= statementOrBlock();
+	return std::make_unique<ForStatement>(initialization, termination, increment, statement);
 }
 
 std::unique_ptr<IExpression> SyntaxAnalyzer::expression()

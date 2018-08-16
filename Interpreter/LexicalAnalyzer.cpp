@@ -35,6 +35,7 @@ std::map<std::string, TokenType> LexicalAnalyzer::_OPERATORS = {{ "+", TokenType
 																{ ")", TokenType::R_PARENTHESIS },
 																{ "{", TokenType::L_BRACE },
 																{ "}", TokenType::R_BRACE },
+																{ ";", TokenType::SEMICOLON },
 
 																{ "=", TokenType::EQUAL },
 																{ "<", TokenType::LESS },
@@ -129,6 +130,8 @@ void LexicalAnalyzer::tokenizeWord()
 	}
 
 	if (buffer == "print")      addToken(TokenType::PRINT);
+	else if (buffer == "for")	addToken(TokenType::FOR);
+	else if (buffer == "while")	addToken(TokenType::WHILE);
 	else if (buffer == "if")	addToken(TokenType::IF);   
 	else if (buffer == "else")  addToken(TokenType::ELSE);
 	else if (buffer == "and")	addToken(TokenType::LOGICAL_AND);

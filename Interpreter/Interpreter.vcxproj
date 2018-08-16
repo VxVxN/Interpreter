@@ -141,6 +141,7 @@
     <ClCompile Include="BlockStatement.cpp" />
     <ClCompile Include="ConditionalExpression.cpp" />
     <ClCompile Include="ConditionalStatement.cpp" />
+    <ClCompile Include="ForStatement.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="ValueExpression.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="UnaryExpression.cpp" />
     <ClCompile Include="VariableExpression.cpp" />
     <ClCompile Include="Variables.cpp" />
+    <ClCompile Include="WhileStatement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssignmentStatement.h" />
@@ -159,6 +161,7 @@
     <ClInclude Include="BlockStatement.h" />
     <ClInclude Include="ConditionalExpression.h" />
     <ClInclude Include="ConditionalStatement.h" />
+    <ClInclude Include="ForStatement.h" />
     <ClInclude Include="IExpression.h" />
     <ClInclude Include="IValue.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="UnaryExpression.h" />
     <ClInclude Include="VariableExpression.h" />
     <ClInclude Include="Variables.h" />
+    <ClInclude Include="WhileStatement.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

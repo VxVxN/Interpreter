@@ -16,6 +16,8 @@
 #include "ConditionalExpression.h"
 #include "ConditionalStatement.h"
 #include "BlockStatement.h"
+#include "WhileStatement.h"
+#include "ForStatement.h"
 
 class SyntaxAnalyzer
 {
@@ -38,6 +40,8 @@ private:
 	std::unique_ptr<IStatement> statement();
 	std::unique_ptr<IStatement> assignmentStatement();
 	std::unique_ptr<IStatement> conditionalStatement();
+	std::unique_ptr<IStatement> whileStatement();
+	std::unique_ptr<IStatement> forStatement();
 
 	std::unique_ptr<IExpression> expression();
 	std::unique_ptr<IExpression> logicalOr();
