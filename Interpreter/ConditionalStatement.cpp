@@ -21,4 +21,5 @@ std::string ConditionalStatement::execute()
 	else if (_elseStatement != NULL) {
 		return _elseStatement->execute();
 	}
+	return "";
 }

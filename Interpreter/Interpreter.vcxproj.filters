@@ -84,8 +84,11 @@
     <ClCompile Include="WhileStatement.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
-    <ClCompile Include="ForStatement.cpp">
+    <ClCompile Include="BreakStatement.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ForStatement.cpp">
+      <Filter>Source Files\ast</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,8 +152,11 @@
     <ClInclude Include="WhileStatement.h">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="ForStatement.h">
+    <ClInclude Include="BreakStatement.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ForStatement.h">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

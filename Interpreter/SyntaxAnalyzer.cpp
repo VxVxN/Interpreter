@@ -66,6 +66,10 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::statement()
 	if (match(TokenType::FOR)) {
 		return forStatement();
 	}
+	if (match(TokenType::BREAK)) {
+		std::unique_ptr<IStatement> statement(new BreakStatement());
+		return statement;
+	}
 	return assignmentStatement();
 }
 

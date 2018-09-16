@@ -14,7 +14,14 @@ std::string ForStatement::execute()
 {
 	std::string result;
 	for (_initialization->execute(); _termination->eval()->asNumber() != 0; _increment->execute()) {
-		result += _block->execute();
+		std::string statement = _block->execute();
+		int findBreak = statement.find("98 114 101 97 107"); // break to ascii
+		if (findBreak != std::string::npos) {
+			statement.erase(findBreak, 17);
+			result += statement;
+			break; 
+		}
+		result += statement;
 	}
 	return result;
 }

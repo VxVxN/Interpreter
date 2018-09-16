@@ -139,6 +139,7 @@
     <ClCompile Include="AssignmentStatement.cpp" />
     <ClCompile Include="BinaryExpression.cpp" />
     <ClCompile Include="BlockStatement.cpp" />
+    <ClCompile Include="BreakStatement.cpp" />
     <ClCompile Include="ConditionalExpression.cpp" />
     <ClCompile Include="ConditionalStatement.cpp" />
     <ClCompile Include="ForStatement.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="AssignmentStatement.h" />
     <ClInclude Include="BinaryExpression.h" />
     <ClInclude Include="BlockStatement.h" />
+    <ClInclude Include="BreakStatement.h" />
     <ClInclude Include="ConditionalExpression.h" />
     <ClInclude Include="ConditionalStatement.h" />
     <ClInclude Include="ForStatement.h" />

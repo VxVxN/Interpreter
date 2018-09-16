@@ -129,13 +129,16 @@ void LexicalAnalyzer::tokenizeWord()
 		current = next();
 	}
 
-	if (buffer == "print")      addToken(TokenType::PRINT);
-	else if (buffer == "for")	addToken(TokenType::FOR);
-	else if (buffer == "while")	addToken(TokenType::WHILE);
-	else if (buffer == "if")	addToken(TokenType::IF);   
-	else if (buffer == "else")  addToken(TokenType::ELSE);
-	else if (buffer == "and")	addToken(TokenType::LOGICAL_AND);
-	else if (buffer == "or")	addToken(TokenType::LOGICAL_OR);
+	if (buffer == "print")		   addToken(TokenType::PRINT);
+	else if (buffer == "for")	   addToken(TokenType::FOR);
+	else if (buffer == "while")	   addToken(TokenType::WHILE);
+	else if (buffer == "do")	   addToken(TokenType::DO);
+	else if (buffer == "break")	   addToken(TokenType::BREAK);
+	else if (buffer == "continue") addToken(TokenType::CONTINUE);
+	else if (buffer == "if")	   addToken(TokenType::IF);   
+	else if (buffer == "else")     addToken(TokenType::ELSE);
+	else if (buffer == "and")	   addToken(TokenType::LOGICAL_AND);
+	else if (buffer == "or")	   addToken(TokenType::LOGICAL_OR);
 	else {
 		addToken(TokenType::WORD, buffer);
 	}

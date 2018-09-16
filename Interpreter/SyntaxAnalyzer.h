@@ -18,6 +18,7 @@
 #include "BlockStatement.h"
 #include "WhileStatement.h"
 #include "ForStatement.h"
+#include "BreakStatement.h"
 
 class SyntaxAnalyzer
 {

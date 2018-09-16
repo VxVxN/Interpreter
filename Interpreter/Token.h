@@ -10,7 +10,8 @@ enum class TokenType {
 	SEMICOLON,
 	WORD, TEXT,
 	//keyword
-	FOR, WHILE,
+	FOR, WHILE, DO,
+	BREAK, CONTINUE,
 	IF, ELSE, PRINT,
 	END_OF_FILE 
 };
