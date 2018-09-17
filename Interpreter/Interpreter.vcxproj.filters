@@ -90,6 +90,9 @@
     <ClCompile Include="ForStatement.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
+    <ClCompile Include="ContinueStatement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="ForStatement.h">
       <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="ContinueStatement.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

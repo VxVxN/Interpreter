@@ -70,6 +70,10 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::statement()
 		std::unique_ptr<IStatement> statement(new BreakStatement());
 		return statement;
 	}
+	if (match(TokenType::CONTINUE)) {
+		std::unique_ptr<IStatement> statement(new ContinueStatement());
+		return statement;
+	}
 	return assignmentStatement();
 }
 

@@ -1,3 +1,3 @@
-﻿  ConditionalStatement.cpp
+﻿  WhileStatement.cpp
   AssignmentStatement.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   Interpreter.vcxproj -> C:\Users\Владимир\Desktop\Interpreter\Debug\Interpreter.exe

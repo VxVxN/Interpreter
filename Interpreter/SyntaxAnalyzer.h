@@ -19,6 +19,7 @@
 #include "WhileStatement.h"
 #include "ForStatement.h"
 #include "BreakStatement.h"
+#include "ContinueStatement.h"
 
 class SyntaxAnalyzer
 {
