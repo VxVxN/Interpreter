@@ -143,6 +143,7 @@
     <ClCompile Include="ConditionalExpression.cpp" />
     <ClCompile Include="ConditionalStatement.cpp" />
     <ClCompile Include="ContinueStatement.cpp" />
+    <ClCompile Include="DoWhileStatement.cpp" />
     <ClCompile Include="ForStatement.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="MyForm.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="ConditionalExpression.h" />
     <ClInclude Include="ConditionalStatement.h" />
     <ClInclude Include="ContinueStatement.h" />
+    <ClInclude Include="DoWhileStatement.h" />
     <ClInclude Include="ForStatement.h" />
     <ClInclude Include="IExpression.h" />
     <ClInclude Include="IValue.h" />

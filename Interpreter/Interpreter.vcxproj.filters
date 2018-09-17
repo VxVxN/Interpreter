@@ -84,14 +84,17 @@
     <ClCompile Include="WhileStatement.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
-    <ClCompile Include="BreakStatement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ForStatement.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
+    <ClCompile Include="BreakStatement.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
     <ClCompile Include="ContinueStatement.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="DoWhileStatement.cpp">
+      <Filter>Source Files\ast</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,14 +158,17 @@
     <ClInclude Include="WhileStatement.h">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="BreakStatement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ForStatement.h">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
+    <ClInclude Include="BreakStatement.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
     <ClInclude Include="ContinueStatement.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="DoWhileStatement.h">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

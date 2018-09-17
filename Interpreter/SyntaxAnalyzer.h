@@ -17,6 +17,7 @@
 #include "ConditionalStatement.h"
 #include "BlockStatement.h"
 #include "WhileStatement.h"
+#include "DoWhileStatement.h"
 #include "ForStatement.h"
 #include "BreakStatement.h"
 #include "ContinueStatement.h"
@@ -43,6 +44,7 @@ private:
 	std::unique_ptr<IStatement> assignmentStatement();
 	std::unique_ptr<IStatement> conditionalStatement();
 	std::unique_ptr<IStatement> whileStatement();
+	std::unique_ptr<IStatement> doWhileStatement();
 	std::unique_ptr<IStatement> forStatement();
 
 	std::unique_ptr<IExpression> expression();

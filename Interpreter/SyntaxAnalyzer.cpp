@@ -63,6 +63,9 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::statement()
 	if (match(TokenType::WHILE)) {
 		return whileStatement();
 	}
+	if (match(TokenType::DO)) {
+		return doWhileStatement();
+	}
 	if (match(TokenType::FOR)) {
 		return forStatement();
 	}
@@ -107,6 +110,14 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::whileStatement()
 	std::unique_ptr<IExpression> condition = expression();
 	std::unique_ptr<IStatement> statement = statementOrBlock();
 	return std::make_unique<WhileStatement>(condition, statement);
+}
+
+std::unique_ptr<IStatement> SyntaxAnalyzer::doWhileStatement()
+{
+	std::unique_ptr<IStatement> statement = statementOrBlock();
+	match(TokenType::WHILE);
+	std::unique_ptr<IExpression> condition = expression();
+	return std::make_unique<DoWhileStatement>(condition, statement);
 }
 
 std::unique_ptr<IStatement> SyntaxAnalyzer::forStatement()
