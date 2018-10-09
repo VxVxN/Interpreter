@@ -1,13 +1,13 @@
 #pragma once
 
-#include "IStatement.h"
+#include "ILoop.h"
 
-class ForStatement : public IStatement
+class ForStatement : public ILoop
 {
 public:
 	ForStatement() = default;
 	ForStatement(std::unique_ptr<IStatement> &initialization, std::unique_ptr<IExpression> &termination,
-				 std::unique_ptr<IStatement> &increment, std::unique_ptr<IStatement>&block);
+				 std::unique_ptr<IStatement> &increment, std::unique_ptr<IStatement> &block);
 
 	virtual std::string execute() override final;
 

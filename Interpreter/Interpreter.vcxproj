@@ -145,6 +145,7 @@
     <ClCompile Include="ContinueStatement.cpp" />
     <ClCompile Include="DoWhileStatement.cpp" />
     <ClCompile Include="ForStatement.cpp" />
+    <ClCompile Include="ILoop.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="ValueExpression.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="DoWhileStatement.h" />
     <ClInclude Include="ForStatement.h" />
     <ClInclude Include="IExpression.h" />
+    <ClInclude Include="ILoop.h" />
     <ClInclude Include="IValue.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="MyForm.h">

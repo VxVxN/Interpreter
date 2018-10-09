@@ -96,6 +96,9 @@
     <ClCompile Include="DoWhileStatement.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
+    <ClCompile Include="ILoop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="DoWhileStatement.h">
       <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="ILoop.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
