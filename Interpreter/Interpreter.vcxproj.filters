@@ -31,6 +31,18 @@
     <Filter Include="Source Files\lib">
       <UniqueIdentifier>{8673fe70-ef2d-403b-b0fe-d23a1cc1b197}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\lib\math">
+      <UniqueIdentifier>{873b5f73-a870-401a-a49a-6b7b24d7b391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\math">
+      <UniqueIdentifier>{d6ab85b3-78a4-438f-abdf-43e5043b3bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\lib\other functions">
+      <UniqueIdentifier>{3a83c4e5-5739-4aa3-b121-68bcae277568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\other functions">
+      <UniqueIdentifier>{9d95d254-af9d-4900-b0b8-f9b47a676ce7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
@@ -97,7 +109,31 @@
       <Filter>Source Files\ast</Filter>
     </ClCompile>
     <ClCompile Include="ILoop.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionalExpression.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="SinFunction.cpp">
+      <Filter>Source Files\lib\math</Filter>
+    </ClCompile>
+    <ClCompile Include="CosFunction.cpp">
+      <Filter>Source Files\lib\math</Filter>
+    </ClCompile>
+    <ClCompile Include="SqrtFunction.cpp">
+      <Filter>Source Files\lib\math</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionStatement.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="EmptyFunction.cpp">
+      <Filter>Source Files\lib\other functions</Filter>
+    </ClCompile>
+    <ClCompile Include="NextLineProcedure.cpp">
+      <Filter>Source Files\lib\other functions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +210,34 @@
       <Filter>Header Files\ast</Filter>
     </ClInclude>
     <ClInclude Include="ILoop.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionalExpression.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions.h">
+      <Filter>Header Files\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="IFunction.h">
+      <Filter>Header Files\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="SinFunction.h">
+      <Filter>Header Files\lib\math</Filter>
+    </ClInclude>
+    <ClInclude Include="CosFunction.h">
+      <Filter>Header Files\lib\math</Filter>
+    </ClInclude>
+    <ClInclude Include="SqrtFunction.h">
+      <Filter>Header Files\lib\math</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionStatement.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptyFunction.h">
+      <Filter>Header Files\lib\other functions</Filter>
+    </ClInclude>
+    <ClInclude Include="NextLineProcedure.h">
+      <Filter>Header Files\lib\other functions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

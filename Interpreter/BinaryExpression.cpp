@@ -24,8 +24,11 @@ std::shared_ptr<IValue> BinaryExpression::eval()
 		std::string string2 = value2->asString();
 
 		// убираем лишний нули у строк
-		auto removeZeros = [](std::string &str) { str = str.substr(0, str.find_last_not_of('0') + 1);
-												  str = str.substr(0, str.find_last_not_of('.') + 1); };
+		auto removeZeros = [](std::string &str) { 
+			if (str.find('.') != std::string::npos) {
+				str = str.substr(0, str.find_last_not_of('0') + 1);
+				str = str.substr(0, str.find_last_not_of('.') + 1);
+		}};
 
 		removeZeros(string1);
 		removeZeros(string2);

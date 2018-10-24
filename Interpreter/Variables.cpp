@@ -28,7 +28,6 @@ void Variables::clear()
 
 ///////////private/////////////////////////
 
-//std::map<std::string, std::shared_ptr<IValue>> Variables::_variables = {};
 std::map<std::string, std::shared_ptr<IValue>> Variables::_variables = {
 	{ "PI", std::make_shared<NumberValue>(_PI) },
 	{ "E", std::make_shared<NumberValue>(_E) }

@@ -6,6 +6,7 @@
 class AssignmentStatement : public IStatement
 {
 public:
+	AssignmentStatement() = delete;
 	AssignmentStatement(std::string variable, IExpression &expression);
 
 	virtual std::string execute() override final;

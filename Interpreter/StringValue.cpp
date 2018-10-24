@@ -15,7 +15,7 @@ double StringValue::asNumber()
 	}
 	catch (...)
 	{
-		return 0.0;
+		throw "StringValue: Cannot convert \"String\" to \"Number\".";
 	}
 }
 

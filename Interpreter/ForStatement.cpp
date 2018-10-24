@@ -1,8 +1,8 @@
 #include "ForStatement.h"
 
 
-ForStatement::ForStatement(std::unique_ptr<IStatement>& initialization, std::unique_ptr<IExpression>& termination,
-						   std::unique_ptr<IStatement>& increment, std::unique_ptr<IStatement>& block)
+ForStatement::ForStatement(std::unique_ptr<IStatement> &initialization, std::unique_ptr<IExpression> &termination,
+						   std::unique_ptr<IStatement> &increment,		std::unique_ptr<IStatement> &block)
 {
 	_initialization = std::move(initialization);
 	_termination	= std::move(termination);

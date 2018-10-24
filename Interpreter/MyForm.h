@@ -75,6 +75,7 @@ namespace Interpreter {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ôàéëToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->âûïîëíèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -166,8 +167,7 @@ namespace Interpreter {
 			this->textBoxProg->ScrollBars = System::Windows::Forms::ScrollBars::Both;
 			this->textBoxProg->Size = System::Drawing::Size(682, 219);
 			this->textBoxProg->TabIndex = 5;
-			this->textBoxProg->Text = L"word = 2 + 3\r\nword2 = PI + word\r\nprint \"word = \" + word + \"\\n\"\r\nprint \"word2 = \" "
-				L"+ word2";
+			this->textBoxProg->Text = resources->GetString(L"textBoxProg.Text");
 			// 
 			// MyForm
 			// 

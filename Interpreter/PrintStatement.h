@@ -1,5 +1,8 @@
 #pragma once
 
+#include <cctype>
+#include <regex>
+
 #include "IStatement.h"
 
 class PrintStatement : public IStatement

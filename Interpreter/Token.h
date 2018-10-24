@@ -7,7 +7,7 @@ enum class TokenType {
 	EQUAL, LESS, MORE, LESS_OR_EQUAL, MORE_OR_EQUAL, NOT_EQUAL,
 	LOGICAL_NEGATION, LOGICAL_AND, LOGICAL_OR,
 	L_PARENTHESIS, R_PARENTHESIS, L_BRACE, R_BRACE,
-	SEMICOLON,
+	SEMICOLON, COMMA,
 	WORD, TEXT,
 	//keyword
 	FOR, WHILE, DO,
@@ -19,7 +19,7 @@ enum class TokenType {
 class Token
 {
 public:
-	Token() {};
+	Token() = default;
 	Token(const TokenType &type, std::string text);
 
 	void setTokenType(const TokenType &type);

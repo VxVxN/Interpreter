@@ -120,4 +120,24 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="textBoxProg.Text" xml:space="preserve">
+    <value>a = 1
+b = -2
+c = -3
+D = b * b - 4 * a * c
+print "Discriminant = " + D + "\n"
+if D &gt; 0 {
+  x1 = (-b-sqrt(D))/(2*a)
+  x2 = (-b+sqrt(D))/(2*a)
+  print "x1 = " + x1 + "\n"
+  print "x2 = " + x2
+}
+else if D &lt; 0 {
+  print "korney nety."
+}
+else {
+  x = (-b-sqrt(D))/(2*a)
+  print "x = " + x
+}</value>
+  </data>
 </root>

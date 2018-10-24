@@ -2,14 +2,14 @@
 
 LexicalAnalyzer::LexicalAnalyzer(std::string input)
 {
-	_pos = 0;
-	_input = input;
-	_lengh = input.length();
+	_position = 0;
+	_inputStr = input;
+	_lenghStr = input.length();
 }
 
 std::list<Token> LexicalAnalyzer::tokenize()
 {
-	while (_pos < _lengh) {
+	while (_position < _lenghStr) {
 		char current = peek(0);
 		if (isdigit(current))	   tokenizeNumber();
 		else if (isalpha(current)) tokenizeWord();
@@ -36,6 +36,7 @@ std::map<std::string, TokenType> LexicalAnalyzer::_OPERATORS = {{ "+", TokenType
 																{ "{", TokenType::L_BRACE },
 																{ "}", TokenType::R_BRACE },
 																{ ";", TokenType::SEMICOLON },
+																{ ",", TokenType::COMMA },
 
 																{ "=", TokenType::EQUAL },
 																{ "<", TokenType::LESS },
@@ -59,14 +60,14 @@ void LexicalAnalyzer::addToken(const TokenType &type, std::string text)
 
 char LexicalAnalyzer::peek(int relativePosition)
 {
-	int position = _pos + relativePosition;
-	if (position >= _lengh) return '\0';
-	return _input.at(position);
+	int position = _position + relativePosition;
+	if (position >= _lenghStr) return '\0';
+	return _inputStr.at(position);
 }
 
 char LexicalAnalyzer::next()
 {
-	_pos++;
+	_position++;
 	return peek(0);
 }
 

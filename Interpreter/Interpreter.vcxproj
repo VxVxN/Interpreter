@@ -143,11 +143,19 @@
     <ClCompile Include="ConditionalExpression.cpp" />
     <ClCompile Include="ConditionalStatement.cpp" />
     <ClCompile Include="ContinueStatement.cpp" />
+    <ClCompile Include="CosFunction.cpp" />
     <ClCompile Include="DoWhileStatement.cpp" />
+    <ClCompile Include="EmptyFunction.cpp" />
     <ClCompile Include="ForStatement.cpp" />
+    <ClCompile Include="FunctionalExpression.cpp" />
+    <ClCompile Include="Functions.cpp" />
+    <ClCompile Include="FunctionStatement.cpp" />
     <ClCompile Include="ILoop.cpp" />
     <ClCompile Include="LexicalAnalyzer.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="NextLineProcedure.cpp" />
+    <ClCompile Include="SinFunction.cpp" />
+    <ClCompile Include="SqrtFunction.cpp" />
     <ClCompile Include="ValueExpression.cpp" />
     <ClCompile Include="NumberValue.cpp" />
     <ClCompile Include="SyntaxAnalyzer.cpp" />
@@ -167,15 +175,24 @@
     <ClInclude Include="ConditionalExpression.h" />
     <ClInclude Include="ConditionalStatement.h" />
     <ClInclude Include="ContinueStatement.h" />
+    <ClInclude Include="CosFunction.h" />
     <ClInclude Include="DoWhileStatement.h" />
+    <ClInclude Include="EmptyFunction.h" />
     <ClInclude Include="ForStatement.h" />
+    <ClInclude Include="FunctionalExpression.h" />
+    <ClInclude Include="Functions.h" />
+    <ClInclude Include="FunctionStatement.h" />
     <ClInclude Include="IExpression.h" />
+    <ClInclude Include="IFunction.h" />
     <ClInclude Include="ILoop.h" />
     <ClInclude Include="IValue.h" />
     <ClInclude Include="LexicalAnalyzer.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="NextLineProcedure.h" />
+    <ClInclude Include="SinFunction.h" />
+    <ClInclude Include="SqrtFunction.h" />
     <ClInclude Include="ValueExpression.h" />
     <ClInclude Include="NumberValue.h" />
     <ClInclude Include="SyntaxAnalyzer.h" />

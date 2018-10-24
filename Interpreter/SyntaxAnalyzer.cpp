@@ -1,11 +1,11 @@
 #include "SyntaxAnalyzer.h"
 
-SyntaxAnalyzer::SyntaxAnalyzer(std::list<Token> tokenList)
+SyntaxAnalyzer::SyntaxAnalyzer(std::list<Token> &tokenList)
 {
 	_EOF = Token(TokenType::END_OF_FILE, "");
 	_tokenList = tokenList;
-	_size = tokenList.size();
-	_pos = 0;
+	_sizeTokenList = tokenList.size();
+	_positionCurrentToken = 0;
 }
 
 std::unique_ptr<IStatement> SyntaxAnalyzer::parse()
@@ -21,8 +21,8 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::parse()
 
 Token SyntaxAnalyzer::get(int relativePosition) const
 {
-	int position = _pos + relativePosition;
-	if (position >= _size) return _EOF;
+	int position = _positionCurrentToken + relativePosition;
+	if (position >= _sizeTokenList) return _EOF;
 
 	return  *std::next(_tokenList.begin(), position);
 }
@@ -31,7 +31,7 @@ bool SyntaxAnalyzer::match(const TokenType &type)
 {
 	Token current = get(0);
 	if (type != current.getTokenType()) return false;
-	_pos++;
+	_positionCurrentToken++;
 	return true;
 }
 
@@ -70,12 +70,15 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::statement()
 		return forStatement();
 	}
 	if (match(TokenType::BREAK)) {
-		std::unique_ptr<IStatement> statement(new BreakStatement());
+		std::unique_ptr<IStatement> statement(std::make_unique<BreakStatement>(BreakStatement()));
 		return statement;
 	}
 	if (match(TokenType::CONTINUE)) {
-		std::unique_ptr<IStatement> statement(new ContinueStatement());
+		std::unique_ptr<IStatement> statement(std::make_unique<ContinueStatement>(ContinueStatement()));
 		return statement;
+	}
+	if (get(0).getTokenType() == TokenType::WORD && get(1).getTokenType() == TokenType::L_PARENTHESIS) {
+		return procedure();
 	}
 	return assignmentStatement();
 }
@@ -89,7 +92,7 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::assignmentStatement()
 		std::unique_ptr<IStatement> AssignmentStatement(std::make_unique<AssignmentStatement>(variable, *expression().release()));
 		return std::move(AssignmentStatement);
 	}
-	throw "SyntaxAnalyzer: Unknown statement";
+	throw "SyntaxAnalyzer: Unknown statement.";
 }
 
 std::unique_ptr<IStatement> SyntaxAnalyzer::conditionalStatement()
@@ -129,6 +132,31 @@ std::unique_ptr<IStatement> SyntaxAnalyzer::forStatement()
 	std::unique_ptr<IStatement>	 increment		= assignmentStatement();
 	std::unique_ptr<IStatement>  statement		= statementOrBlock();
 	return std::make_unique<ForStatement>(initialization, termination, increment, statement);
+}
+
+std::unique_ptr<FunctionalExpression> SyntaxAnalyzer::function() {
+	std::string name = get(0).getText();
+	match(TokenType::WORD);
+	match(TokenType::L_PARENTHESIS);
+	std::unique_ptr<FunctionalExpression> function = std::make_unique<FunctionalExpression>(name);
+	while (!match(TokenType::R_PARENTHESIS)) {
+		function->addArgument(expression());
+		match(TokenType::COMMA);
+	}
+	return function;
+}
+
+std::unique_ptr<FunctionStatement> SyntaxAnalyzer::procedure() {
+	std::string name = get(0).getText();
+	match(TokenType::WORD);
+	match(TokenType::L_PARENTHESIS);
+
+	std::unique_ptr<FunctionStatement> procedure = std::make_unique<FunctionStatement>(name);
+	while (!match(TokenType::R_PARENTHESIS)) {
+		procedure->addArgument(expression());
+		match(TokenType::COMMA);
+	}
+	return std::move(procedure);
 }
 
 std::unique_ptr<IExpression> SyntaxAnalyzer::expression()
@@ -245,7 +273,7 @@ std::unique_ptr<IExpression> SyntaxAnalyzer::multiplicative()
 		}
 		break;
 	}
-	return std::move(result);
+	return result;
 }
 
 std::unique_ptr<IExpression> SyntaxAnalyzer::unary()
@@ -267,6 +295,9 @@ std::unique_ptr<IExpression> SyntaxAnalyzer::primary()
 		std::unique_ptr<IExpression> result(std::make_unique<ValueExpression>(atof(current.getText().c_str())));
 		return std::move(result);
 	}
+	if (get(0).getTokenType() == TokenType::WORD && get(1).getTokenType() == TokenType::L_PARENTHESIS) {
+		return function();
+	}
 	if (match(TokenType::WORD)) {
 		std::unique_ptr<IExpression> result(std::make_unique<VariableExpression>(current.getText()));
 		return std::move(result);
@@ -280,5 +311,5 @@ std::unique_ptr<IExpression> SyntaxAnalyzer::primary()
 		match(TokenType::R_PARENTHESIS);
 		return std::move(result);
 	}
-	throw "SyntaxAnalyzer: Unknown expression";
+	throw "SyntaxAnalyzer: Unknown expression.";
 }

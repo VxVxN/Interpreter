@@ -16,11 +16,11 @@ public:
 
 	std::list<Token> tokenize();
 private:
-	std::string _input;
-	const std::string OPERATOR_CHARS = "+-*/()=<>!{};";
+	std::string _inputStr;
+	const std::string OPERATOR_CHARS = "+-*/()=<>!{};,";
 
 	static std::map<std::string, TokenType> _OPERATORS;
-	int _pos, _lengh;
+	int _position, _lenghStr;
 
 	void addToken(const TokenType &type);
 	void addToken(const TokenType &type, std::string text);

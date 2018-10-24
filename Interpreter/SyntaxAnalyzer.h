@@ -21,17 +21,19 @@
 #include "ForStatement.h"
 #include "BreakStatement.h"
 #include "ContinueStatement.h"
+#include "FunctionalExpression.h"
+#include "FunctionStatement.h"
 
 class SyntaxAnalyzer
 {
 public:
-	SyntaxAnalyzer(std::list<Token> tokenList);
+	SyntaxAnalyzer(std::list<Token> &tokenList);
 
 	std::unique_ptr<IStatement> parse();
 
 private:
-	int _pos;
-	int _size;
+	int _positionCurrentToken;
+	int _sizeTokenList;
 	std::list<Token> _tokenList;
 	Token _EOF;
 
@@ -46,6 +48,9 @@ private:
 	std::unique_ptr<IStatement> whileStatement();
 	std::unique_ptr<IStatement> doWhileStatement();
 	std::unique_ptr<IStatement> forStatement();
+
+	std::unique_ptr<FunctionalExpression> function();
+	std::unique_ptr<FunctionStatement>	  procedure();
 
 	std::unique_ptr<IExpression> expression();
 	std::unique_ptr<IExpression> logicalOr();
